@@ -50,20 +50,20 @@ export default class NFTaddTJS {
        })
        this.root.add(plane)
     }
-    public addVideo (id: string, scale: number) {
-       const root = this.root
-       const ARVideo: HTMLVideoElement = document.getElementById(id) as HTMLVideoElement;
-       const texture = new VideoTexture(ARVideo as HTMLVideoElement)
-       const mat = new MeshStandardMaterial({ color: 0xbbbbff, map: texture })
-       ARVideo.play()
-       const planeGeom = new PlaneGeometry(1, 1, 1, 1)
-       const plane = new Mesh(planeGeom, mat)
-       plane.scale.set(scale, scale, scale)
-       document.addEventListener('getNFTData', (ev: any) => {
-           var msg = ev.detail
-           plane.position.y = (msg.height / msg.dpi * 2.54 * 10) / 2.0
-           plane.position.x = (msg.width / msg.dpi * 2.54 * 10) / 2.0
-       })
-       this.root.add(plane)
+     public addVideo (id: string, scaleX: number,scaleY: number,scaleZ: number) {
+        const root = this.root
+        const ARVideo: HTMLVideoElement = document.getElementById(id) as HTMLVideoElement;
+        const texture = new VideoTexture(ARVideo as HTMLVideoElement)
+        const mat = new MeshStandardMaterial({ color: 0xbbbbff, map: texture })
+        ARVideo.play()
+        const planeGeom = new PlaneGeometry(1, 1, 1, 1)
+        const plane = new Mesh(planeGeom, mat)
+        plane.scale.set(scaleX, scaleY, scaleZ)
+        document.addEventListener('getNFTData', (ev: any) => {
+            var msg = ev.detail
+            plane.position.y = (msg.height / msg.dpi * 2.54 * 10) / 2.0
+            plane.position.x = (msg.width / msg.dpi * 2.54 * 10) / 2.0
+        })
+        this.root.add(plane)
     }
 }
